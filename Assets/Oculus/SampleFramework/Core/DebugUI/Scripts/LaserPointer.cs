@@ -27,6 +27,7 @@ public class LaserPointer : OVRCursor
     public GameObject cursorVisual;
     public float maxLength = 10.0f;
 
+	[SerializeField]
     private LaserBeamBehavior _laserBeamBehavior;
 
     public LaserBeamBehavior laserBeamBehavior
