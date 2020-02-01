@@ -73,6 +73,11 @@ public class LaserPointer : OVRCursor
 
     public override void SetCursorRay(Transform t)
     {
+        //Vector3 posizione = t.position;
+        //posizione[0] = t.position.x + 0.03f;// the X value
+        //posizione[1] = t.position.x - 0.03f;
+        //posizione[2] = t.position.x + 0.03f;
+        //t.position = posizione;
         _startPoint = t.position;
         _forward = t.forward;
         _hitTarget = false;
