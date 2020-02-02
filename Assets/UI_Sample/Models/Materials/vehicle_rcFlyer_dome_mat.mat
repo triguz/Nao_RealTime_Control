@@ -6,7 +6,7 @@ Material:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
-  m_Name: Ground
+  m_Name: vehicle_rcFlyer_dome_mat
   m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
@@ -78,6 +78,20 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Cube
+        second:
+          m_Texture: {fileID: 8900000, guid: 9c45003dc05b3f44eb34c04bec8173b0, type: 2}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _SpecGlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -93,6 +107,10 @@ Material:
         second: .5
       data:
         first:
+          name: _Shininess
+        second: .033404246
+      data:
+        first:
           name: _Parallax
         second: .0199999996
       data:
@@ -102,7 +120,7 @@ Material:
       data:
         first:
           name: _Glossiness
-        second: .416000009
+        second: .829999983
       data:
         first:
           name: _BumpScale
@@ -126,7 +144,7 @@ Material:
       data:
         first:
           name: _Metallic
-        second: .317999989
+        second: .469999999
     m_Colors:
       data:
         first:
@@ -135,4 +153,12 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: .0288062226, g: .132352948, b: .00291955308, a: 1}
+        second: {r: .173551023, g: .659893095, b: .786764741, a: 1}
+      data:
+        first:
+          name: _SpecColor
+        second: {r: .772883832, g: 1, b: .76119405, a: 1}
+      data:
+        first:
+          name: _ReflectColor
+        second: {r: .179104507, g: .179104507, b: .179104507, a: .501960814}
