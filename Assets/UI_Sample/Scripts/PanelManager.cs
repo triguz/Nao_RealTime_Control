@@ -37,17 +37,17 @@ public class PanelManager : MonoBehaviour {
 
 		CloseCurrent();
 
-		m_PreviouslySelected = newPreviouslySelected;
+		//m_PreviouslySelected = newPreviouslySelected;
 
 		m_Open = anim;
 		m_Open.SetBool(m_OpenParameterId, true);
 
-		GameObject go = FindFirstEnabledSelectable(anim.gameObject);
+		//GameObject go = FindFirstEnabledSelectable(anim.gameObject);
 
-		SetSelected(go);
+		//SetSelected(go);
 	}
 
-	static GameObject FindFirstEnabledSelectable (GameObject gameObject)
+	/*static GameObject FindFirstEnabledSelectable (GameObject gameObject)
 	{
 		GameObject go = null;
 		var selectables = gameObject.GetComponentsInChildren<Selectable> (true);
@@ -58,7 +58,7 @@ public class PanelManager : MonoBehaviour {
 			}
 		}
 		return go;
-	}
+	}*/
 
 	public void CloseCurrent()
 	{
