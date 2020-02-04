@@ -1,0 +1,75 @@
+<!-- -*- xml -*- Tell emacs this is a C++ file (despite it's .in extension) -->
+
+<!--
+====================
+   Widgets
+====================
+-->
+
+<document>
+<widget limb="Head" xmargin="100" ymargin="90" spacing_before="15" spacing_after="15" show_mirror="0">
+  <slider motor="HeadYaw" x="54" y="310" vertical="0"/>
+  <slider motor="HeadPitch" x="285" y="45" vertical="1"/>
+</widget>
+
+<widget limb="LArm" xmargin="135" ymargin="155" spacing_before="30" spacing_after="50" show_mirror="1">
+  <slider motor="LShoulderPitch" x="0" y="60" vertical="1"  length="200"/>
+  <slider motor="LShoulderRoll" x="20" y="-10" vertical="0"  length="200"/>
+  <slider motor="LElbowRoll" x="230" y="-10" vertical="0"  length="200"/>
+  <slider motor="LElbowYaw" x="360" y="60" vertical="1"  length="200"/>
+  <slider motor="LWristYaw" x="20" y="260" vertical="0"  length="200"/>
+  <slider motor="LHand" x="230" y="260" vertical="0"  length="200"/>
+</widget>
+
+<widget limb="RArm" xmargin="135" ymargin="170" spacing_before="30" spacing_after="55" show_mirror="1">
+  <slider motor="RElbowYaw" x="0" y="60" vertical="1"  length="200"/>
+  <slider motor="RElbowRoll" x="20" y="-10" vertical="0"  length="200"/>
+  <slider motor="RShoulderRoll" x="230" y="-10" vertical="0"  length="200"/>
+  <slider motor="RShoulderPitch" x="360" y="60" vertical="1"  length="200"/>
+  <slider motor="RWristYaw" x="230" y="260" vertical="0"  length="200"/>
+  <slider motor="RHand" x="20" y="260" vertical="0"  length="200"/>
+</widget>
+
+<widget limb="LLeg" xmargin="195" ymargin="140" spacing_before="35" show_mirror="1">
+  <slider motor="LHipYawPitch" x="70" y="-10" vertical="0"/>
+  <slider motor="LHipRoll" x="325" y="0" vertical="1" length="170"/>
+  <slider motor="LHipPitch" x="0" y="0" vertical="1" length="170"/>
+  <slider motor="LKneePitch" x="0" y="170" vertical="1" length="170"/>
+  <slider motor="LAnkleRoll" x="325" y="170" vertical="1" length="170"/>
+  <slider motor="LAnklePitch" x="85" y="320" vertical="0"/>
+</widget>
+
+<widget limb="RLeg" xmargin="185" ymargin="140" spacing_before="35" show_mirror="1">
+  <slider motor="RHipYawPitch" x="70" y="-10" vertical="0"/>
+  <slider motor="RHipRoll" x="0" y="0" vertical="1" length="170"/>
+  <slider motor="RHipPitch" x="325" y="0" vertical="1" length="170"/>
+  <slider motor="RKneePitch" x="325" y="170" vertical="1" length="170"/>
+  <slider motor="RAnkleRoll" x="0" y="170" vertical="1" length="170"/>
+  <slider motor="RAnklePitch" x="85" y="320" vertical="0"/>
+</widget>
+
+<!-- Compatibility before Qt-Ogre refactoring -->
+<widget limb="LUpperArm" xmargin="130" ymargin="155" spacing_before="30" spacing_after="50" show_mirror="1">
+  <slider motor="LShoulderRoll" x="0" y="30" vertical="1"/>
+  <slider motor="LShoulderPitch" x="70" y="260" vertical="0"/>
+  <slider motor="LElbowRoll" x="70" y="-10" vertical="0"/>
+  <slider motor="LElbowYaw" x="360" y="30" vertical="1"/>
+</widget>
+
+<widget limb="RUpperArm" xmargin="130" ymargin="175" spacing_before="40" spacing_after="50" show_mirror="1">
+  <slider motor="RShoulderRoll" x="360" y="30" vertical="1"/>
+  <slider motor="RShoulderPitch" x="85" y="260" vertical="0"/>
+  <slider motor="RElbowRoll" x="85" y="-10" vertical="0"/>
+  <slider motor="RElbowYaw" x="0" y="30" vertical="1"/>
+</widget>
+
+<widget limb="LForeArm" xmargin="100" ymargin="120" spacing_before="10" show_mirror="1">
+  <slider motor="LWristYaw" x="0" y="0" vertical="1"/>
+  <slider motor="LHand" x="90" y="225" vertical="0"/>
+</widget>
+
+<widget limb="RForeArm" xmargin="80" ymargin="120" spacing_before="10" show_mirror="1">
+  <slider motor="RWristYaw" x="315" y="0" vertical="1"/>
+  <slider motor="RHand" x="40" y="225" vertical="0"/>
+</widget>
+</document>

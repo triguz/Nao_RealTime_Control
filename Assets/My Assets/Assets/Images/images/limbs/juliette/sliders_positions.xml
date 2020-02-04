@@ -1,0 +1,40 @@
+<!-- -*- xml -*- Tell emacs this is a C++ file (despite it's .in extension) -->
+
+<!--
+====================
+   Widgets
+====================
+-->
+
+<document>
+<widget limb="Head" xmargin="100" ymargin="90" spacing_before="15" spacing_after="15" show_mirror="0">
+  <slider motor="HeadYaw" x="54" y="310" vertical="0"/>
+  <slider motor="HeadPitch" x="285" y="45" vertical="1"/>
+</widget>
+
+<widget limb="LArm" xmargin="130" ymargin="175" spacing_before="30" spacing_after="50" show_mirror="1">
+  <slider motor="LShoulderPitch" x="0" y="60" vertical="1"  length="220"/>
+  <slider motor="LShoulderRoll" x="10" y="-10" vertical="0" length="200"/>
+  <slider motor="LElbowRoll" x="232" y="-10" vertical="0" length="220"/>
+  <slider motor="LHand" x="377" y="60" vertical="1"  length="200"/>
+  <slider motor="LElbowYaw" x="10" y="300" vertical="0" length="220"/>
+  <slider motor="LWristYaw" x="232" y="300" vertical="0" length="220"/>
+</widget>
+
+<widget limb="RArm" xmargin="130" ymargin="175" spacing_before="40" spacing_after="50" show_mirror="1">
+  <slider motor="RElbowRoll" x="10" y="-10" vertical="0" length="220"/>
+  <slider motor="RShoulderRoll" x="232" y="-10" vertical="0" length="220"/>
+  <slider motor="RShoulderPitch" x="360" y="60" vertical="1" length="200"/>
+  <slider motor="RHand" x="0" y="60" vertical="1" length="200"/>
+  <slider motor="RElbowYaw" x="232" y="300" vertical="0" length="220"/>
+  <slider motor="RWristYaw" x="10" y="300" vertical="0" length="220"/>
+</widget>
+
+<!-- Data draft example for Snoopy motion widget -->
+<widget limb="Leg" xmargin="180" ymargin="80" spacing_before="40" show_mirror="0">
+  <slider motor="HipRoll" x="100" y="-10" vertical="0" length="200"/>
+  <slider motor="HipPitch" x="0" y="80" vertical="1" length="200"/>
+  <slider motor="KneePitch" x="325" y="80" vertical="1" length="200"/>
+</widget>
+
+</document>
