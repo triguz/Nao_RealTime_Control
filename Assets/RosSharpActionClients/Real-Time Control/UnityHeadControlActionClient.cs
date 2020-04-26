@@ -7,18 +7,21 @@ namespace RosSharp.RosBridgeClient.Actionlib
     {
         OVRCameraRig headSet;
         private Quaternion rotation;
-        float prevAngleX = 0.0f;
-        float prevAngleY = 0.0f;
-        float tolerance = 0.0f;
-        float pi = 3.14159265359f;
-        float maxRotationX = 2.0857f;
-        float minRotationX = -2.0857f;
-        float maxRotationY = -0.6720f;
-        float minRotationY = 0.5149f;
-        public float XAngle { get; set; }
-        public float YAngle { get; set; }
+        //float prevAngleX = 0.0f;
+        //float prevAngleY = 0.0f;
+        //float tolerance = 0.0f;
+        //float pi = 3.14159265359f;
+        //float maxRotationX = 2.0857f;
+        //float minRotationX = -2.0857f;
+        //float maxRotationY = -0.6720f;
+        //float minRotationY = 0.5149f;
+        private float XAngle;
+        private float YAngle;
         private RosConnector rosConnector;
         public JointAnglesWithSpeedActionClient jointAnglesWithSpeedActionClient;
+        //public float headRotationX;
+        //public float headRotationY;
+        //public float headRotationZ;
         // Start is called before the first frame update
 
         public string actionName = "joint_angles_action";
@@ -45,49 +48,53 @@ namespace RosSharp.RosBridgeClient.Actionlib
             rotation = headSet.centerEyeAnchor.rotation;
             //get euler angles from quaternion
             Vector3 eulerRotation = rotation.eulerAngles;
-            eulerRotation.Unity2Ros();
-            XAngle = eulerRotation.x;
-            YAngle = eulerRotation.y;
-            //get radians
-            XAngle = (XAngle * pi) / 180;
-            YAngle = (XAngle * pi) / 180;
-            //float XAngle = (headSet.centerEyeAnchor.rotation.x)*(-2.0f);
-            //float YAngle = headSet.centerEyeAnchor.rotation.y*(2.0f);
-            //print(XAngle);
-            //print(YAngle);
-            //XAngle = 1.0f;
-            //YAngle = 2.0f;
-                float[] new_joint_angles = { YAngle, XAngle };
-                //ExecuteAngle(joint_names, new_joint_angles);
-                if (OVRInput.Get(OVRInput.RawButton.B))
+            //headRotationX = eulerRotation.x;
+            //headRotationY = eulerRotation.y;
+            //headRotationZ = eulerRotation.z;
+            if (eulerRotation.y < 270.0f && eulerRotation.y > 180.0f) { eulerRotation.y = 271.0f; }
+            if (eulerRotation.y < 180.0f && eulerRotation.y > 90.0f) { eulerRotation.y = 89.0f; }
+            if (eulerRotation.x < 270.0f && eulerRotation.x > 180.0f) { eulerRotation.x = 271.0f; }
+            if (eulerRotation.x < 180.0f && eulerRotation.x > 900.0f) { eulerRotation.x = 89.0f; }
+            if (OVRInput.Get(OVRInput.RawButton.B))
+            {
+                //print("ENTERED IN CICLE, THE ANGLES ARE X: " + XAngle + " EULER X: " + eulerRotation.x + " Y: " + YAngle + " EULER Y: " + eulerRotation.y + " EULER ROTATION UNITY: " + eulerRotation2 + " EULER ROTATION ROS: " + eulerRotation + "\n");
+                if (eulerRotation.y <= 90.0f && eulerRotation.x <= 90.0f)
                 {
-                    print("ENTERED IN CYCLE 1, THE ANGLES ARE X: " + XAngle + " PREV X: " + prevAngleX + " Y: " + YAngle + "PREV Y: " + prevAngleY + "\n");
-                    //control tolerance to prevent jittering from involontary movement of the head
-                    if (((XAngle - prevAngleX) > tolerance) || ((YAngle - prevAngleY) > tolerance))
-                    {
-                        print("ENTERED IN CYCLE 2, THE ANGLES ARE X: " + XAngle + " PREV X: " + prevAngleX + " Y: " + YAngle + "PREV Y: " + prevAngleY + "\n");
-                        ExecuteAngle(joint_names, new_joint_angles);
-                        prevAngleX = XAngle;
-                        prevAngleY = YAngle;
-                    }
-                    else
-                    {
-                        print("ELSE" + "\n");
-                    }
-
+                    XAngle = eulerRotation.x * Mathf.Deg2Rad;
+                    YAngle = -eulerRotation.y * Mathf.Deg2Rad;
+                    float[] new_joint_angles = { YAngle, XAngle };
+                    //print("ENTERED IN CYCLE <90, HEADYAW IS: " + YAngle + " HEADPITCH: " + XAngle + "\n");
+                    ExecuteAngle(joint_names, new_joint_angles);
                 }
-            /*if (OVRInput.GetDown(OVRInput.RawButton.B))
-        {
-            //control tolerance to prevent jittering from involontary movement of the head
-            if (((XAngle - prevAngleX) > tolerance) || ((YAngle - prevAngleY) > tolerance))
-            {
-                ExecuteAngle(joint_names, new_joint_angles);
+                if (eulerRotation.y >= 270.0f && eulerRotation.x >= 270.0f)
+                {
+                    XAngle = -(360.0f - eulerRotation.x) * Mathf.Deg2Rad;
+                    YAngle = (360.0f - eulerRotation.y) * Mathf.Deg2Rad;
+                    float[] new_joint_angles = { YAngle, XAngle };
+                    //print("ENTERED IN CYCLE >270, HEADYAW IS: " + YAngle + " HEADPITCH: " + XAngle + "\n");
+                    ExecuteAngle(joint_names, new_joint_angles);
+                }
+                if (eulerRotation.y <= 90.0f && eulerRotation.x >= 270.0f)
+                {
+                    XAngle = -(360.0f - eulerRotation.x) * Mathf.Deg2Rad;
+                    YAngle = -eulerRotation.y * Mathf.Deg2Rad;
+                    float[] new_joint_angles = { YAngle, XAngle };
+                    //print("ENTERED IN CYCLE <90 e >270, HEADYAW IS: " + YAngle + " HEADPITCH: " + XAngle + "\n");
+                    ExecuteAngle(joint_names, new_joint_angles);
+                }
+                if (eulerRotation.y >= 270.0f && eulerRotation.x <= 90.0f)
+                {
+                    XAngle = eulerRotation.x * Mathf.Deg2Rad;
+                    YAngle = (360.0f - eulerRotation.y) * Mathf.Deg2Rad;
+                    float[] new_joint_angles = { YAngle, XAngle };
+                    //print("ENTERED IN CYCLE >270 e <90, HEADYAW IS: " + YAngle + " HEADPITCH: " + XAngle + "\n");
+                    ExecuteAngle(joint_names, new_joint_angles);
+                }
+                else
+                {
+                    print("ENTERED IN ELSE, THE ANGLES ARE X: " + XAngle + " EULER X: " + eulerRotation.x + " Y: " + YAngle + " EULER Y: " + eulerRotation.y + "\n");
+                }
             }
-            else
-            {
-
-            }
-        }*/
             status = jointAnglesWithSpeedActionClient.GetStatusString();
             feedback = jointAnglesWithSpeedActionClient.GetFeedbackString();
             result = jointAnglesWithSpeedActionClient.GetResultString();
