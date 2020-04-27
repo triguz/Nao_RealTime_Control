@@ -11,10 +11,10 @@ namespace RosSharp.RosBridgeClient.Actionlib
         //float prevAngleY = 0.0f;
         //float tolerance = 0.0f;
         //float pi = 3.14159265359f;
-        //float maxRotationX = 2.0857f;
-        //float minRotationX = -2.0857f;
-        //float maxRotationY = -0.6720f;
-        //float minRotationY = 0.5149f;
+        //float maxRotationY = 2.0857f;
+        //float minRotationY = -2.0857f;
+        //float maxRotationX = -0.6720f;
+        //float minRotationX = 0.5149f;
         private float XAngle;
         private float YAngle;
         private RosConnector rosConnector;
