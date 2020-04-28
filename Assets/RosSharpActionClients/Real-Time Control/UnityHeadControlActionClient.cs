@@ -22,7 +22,6 @@ namespace RosSharp.RosBridgeClient.Actionlib
         //public float headRotationX;
         //public float headRotationY;
         //public float headRotationZ;
-        // Start is called before the first frame update
 
         public string actionName = "joint_angles_action";
         public string[] joint_names = { "HeadYaw", "HeadPitch" };
@@ -33,6 +32,7 @@ namespace RosSharp.RosBridgeClient.Actionlib
         public string feedback = "";
         public string result = "";
 
+        // Start is called before the first frame update
         void Start()
         {
             headSet = GameObject.FindObjectOfType<OVRCameraRig>();
