@@ -41,6 +41,7 @@ namespace RosSharp.RosBridgeClient.Actionlib
         {
             bodyPoseWithSpeedActionClient.posture_name = new_posture_name;
             bodyPoseWithSpeedActionClient.speed = new_speed_value;
+
             bodyPoseWithSpeedActionClient.SendGoal();
         }*/
 

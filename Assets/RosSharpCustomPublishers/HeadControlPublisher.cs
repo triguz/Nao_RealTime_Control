@@ -22,7 +22,7 @@ namespace RosSharp.RosBridgeClient
 
         private void FixedUpdate()
         {
-            if (OVRInput.Get(OVRInput.RawButton.B))
+            if (OVRInput.Get(OVRInput.RawButton.Y))
             {
                 UpdateMessage();
             }

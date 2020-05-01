@@ -19,6 +19,7 @@ using System;
 using System.Threading;
 using RosSharp.RosBridgeClient.Protocols;
 using UnityEngine;
+using RosSharp.RosBridgeClient.MessageTypes.NaoHandsControl;
 
 namespace RosSharp.RosBridgeClient
 {
@@ -71,6 +72,21 @@ namespace RosSharp.RosBridgeClient
         {
             IsConnected.Reset();
             Debug.Log("Disconnected from RosBridge: " + RosBridgeServerUrl);
+        }
+
+        public void CallServiceOpenHand(bool hand)
+        {
+            RosSocket.CallService<HandsControlRequest, HandsControlResponse>("nao_hands_control/open_hand", ServiceCallHandler, new HandsControlRequest(hand));
+        }
+
+        public void CallServiceCloseHand(bool hand)
+        {
+            RosSocket.CallService<HandsControlRequest, HandsControlResponse>("nao_hands_control/close_hand", ServiceCallHandler, new HandsControlRequest(hand));
+        }
+
+        private void ServiceCallHandler(HandsControlResponse t)
+        {
+            //response is empty anyway
         }
     }
 }

@@ -40,7 +40,10 @@ public class PositionsPrint : MonoBehaviour
         string leftrot = " And rotation is: ";
         string headpos = "Position of the HEADSET is: ";
         string headrot = " And rotation is: ";
-        distLabel.text = rightpos + posR.ToString() + rightrot + rotR.ToString() + "\n" + leftpos + posL.ToString() + leftrot + rotL.ToString() + "\n" + headpos + posHead.ToString() + headrot + rotHead.ToString() + "\n";
+        //distLabel.text = rightpos + posR.ToString() + rightrot + rotR.ToString() + "\n" + leftpos + posL.ToString() + leftrot + rotL.ToString() + "\n" + headpos + posHead.ToString() + headrot + rotHead.ToString() + "\n";
+        string accessoryPosition = rightpos + posR.ToString() + rightrot + rotR.eulerAngles.ToString() + "\n" + leftpos + posL.ToString() + leftrot + rotL.eulerAngles.ToString() + "\n" + headpos + posHead.ToString() + headrot + rotHead.ToString() + "\n"; ;
+        //distLabel.text = rightpos + posR.ToString() + rightrot + rotR.eulerAngles.ToString() + "\n" + leftpos + posL.ToString() + leftrot + rotL.eulerAngles.ToString() + "\n" + headpos + posHead.ToString() + headrot + rotHead.ToString() + "\n";
+        distLabel.text = accessoryPosition + "\n";
     }
     /*void Update()
     {
