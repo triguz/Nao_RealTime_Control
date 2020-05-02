@@ -35,15 +35,18 @@ public class PositionsPrint : MonoBehaviour
         Quaternion rotR = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch);
         Quaternion rotL = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LTouch);
         string rightpos = "Position of the RIGHT controller is: ";
-        string rightrot = " And rotation is: ";
         string leftpos = "Position of the LEFT controller is: ";
-        string leftrot = " And rotation is: ";
         string headpos = "Position of the HEADSET is: ";
-        string headrot = " And rotation is: ";
+        string rot = " And rotation is: ";
+        string cl = "\n";
+        string axisL = "AXIS LEFT: ";
+        string axisR = "AXIS RIGHT: ";
         //distLabel.text = rightpos + posR.ToString() + rightrot + rotR.ToString() + "\n" + leftpos + posL.ToString() + leftrot + rotL.ToString() + "\n" + headpos + posHead.ToString() + headrot + rotHead.ToString() + "\n";
-        string accessoryPosition = rightpos + posR.ToString() + rightrot + rotR.eulerAngles.ToString() + "\n" + leftpos + posL.ToString() + leftrot + rotL.eulerAngles.ToString() + "\n" + headpos + posHead.ToString() + headrot + rotHead.ToString() + "\n"; ;
+        string accessoryPosition = rightpos + posR.ToString() + rot + rotR.eulerAngles.ToString() + "\n" + leftpos + posL.ToString() + rot + rotL.eulerAngles.ToString() + "\n" + headpos + posHead.ToString() + rot + rotHead.ToString() + "\n"; ;
         //distLabel.text = rightpos + posR.ToString() + rightrot + rotR.eulerAngles.ToString() + "\n" + leftpos + posL.ToString() + leftrot + rotL.eulerAngles.ToString() + "\n" + headpos + posHead.ToString() + headrot + rotHead.ToString() + "\n";
-        distLabel.text = accessoryPosition + "\n";
+        Vector2 inputAxisThumbL = OVRInput.Get(OVRInput.RawAxis2D.LThumbstick);
+        Vector2 inputAxisThumbR = OVRInput.Get(OVRInput.RawAxis2D.RThumbstick);
+        distLabel.text = accessoryPosition + cl + axisL + inputAxisThumbL.ToString() + cl + axisR + inputAxisThumbR.ToString();
     }
     /*void Update()
     {

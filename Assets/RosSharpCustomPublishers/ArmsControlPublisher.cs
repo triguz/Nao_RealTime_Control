@@ -8,7 +8,8 @@ namespace RosSharp.RosBridgeClient
         public string FrameId = "Unity";
         private int positionLenght = 6; //lenght of the position array 6D
         private MessageTypes.NaoArmsControl.ArmsControl message;
-        int count = 0;
+        protected bool isEnabled { get; set; }
+        int rate = 0;
         protected override void Start()
         {
             base.Start();
@@ -17,16 +18,19 @@ namespace RosSharp.RosBridgeClient
 
         private void Update()
         {
-           if (OVRInput.Get(OVRInput.RawButton.B))
+            if (isEnabled)
             {
-                count++;
-                //update every frame and a half to not spam subscriber and ik solver
-                if (count >= 135)
+                if (OVRInput.Get(OVRInput.RawButton.B))
                 {
-                    UpdateMessage();
-                    count = 0;
-                }
+                    rate++;
+                    //update every frame and a half to not spam subscriber and ik solver
+                    if (rate >= 135)
+                    {
+                        UpdateMessage();
+                        rate = 0;
+                    }
 
+                }
             }
         }
 
@@ -71,14 +75,18 @@ namespace RosSharp.RosBridgeClient
             //set position
             //print("RIGHT ARM VALUES: " + posR.x * coef2 + " " + posR.y * coef + " " + posR.z * coef + "\n");
             //print("LEFT ARM VALUES: " + posL.x * coef2 + " " + posL.y * coef + " " + posL.z * coef + "\n");
-            message.position_right_arm[0] = FitSafePosition(posR.x* coefY, 'x');
+            //message.position_right_arm[0] = FitSafePosition(posR.x* coefY, 'x');
+            message.position_right_arm[0] = FitSafePosition(posR.x * coefX, 'x');
             //temp var to save right arm y sign 
-            float saveSign = FitSafePosition(-posR.y* coefX, 'y');
+            //float saveSign = FitSafePosition(-posR.y* coefX, 'y');
+            float saveSign = FitSafePosition(-posR.y * coefY, 'y');
             message.position_right_arm[1] = -saveSign;
             message.position_right_arm[2] = FitSafePosition(posR.z* coefZ, 'z');
-            message.position_left_arm[0] = FitSafePosition(posL.x* coefY, 'x');
+            //message.position_left_arm[0] = FitSafePosition(posL.x* coefY, 'x');
+            message.position_left_arm[0] = FitSafePosition(posL.x * coefX, 'x');
             //left arm is always pointing too much to the right...
-            message.position_left_arm[1] = FitSafePosition(((posL.y* coefX))+0.02f, 'y');
+            //message.position_left_arm[1] = FitSafePosition(((posL.y* coefX))+0.01f, 'y');
+            message.position_left_arm[1] = FitSafePosition(((posL.y * coefY)) + 0.01f, 'y');
             message.position_left_arm[2] = FitSafePosition(posL.z* coefZ, 'z');
             //print("RIGHT ARM VALUES FITTED: " + message.position_right_arm[0] + " " + message.position_right_arm[1] + " " + message.position_right_arm[2] + " " + "\n");
             //print("LEFT ARM VALUES FITTED: " + message.position_left_arm[0] + " " + message.position_left_arm[1] + " " + message.position_left_arm[2] + " " + "\n");
@@ -253,6 +261,11 @@ namespace RosSharp.RosBridgeClient
                     }
                 }
             }
+        }
+
+        public void EnableDisable()
+        {
+            isEnabled = !isEnabled;
         }
     }
 }

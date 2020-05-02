@@ -10,6 +10,7 @@ namespace RosSharp.RosBridgeClient
         public float standardSpeed = 0.3f;
         OVRCameraRig headSet;
         public Quaternion rotation;
+        protected bool isEnabled { get; set; }
 
         private MessageTypes.NaoHeadControl.HeadControl message;
 
@@ -22,9 +23,12 @@ namespace RosSharp.RosBridgeClient
 
         private void FixedUpdate()
         {
-            if (OVRInput.Get(OVRInput.RawButton.Y))
+            if (isEnabled)
             {
-                UpdateMessage();
+                if (OVRInput.Get(OVRInput.RawButton.Y))
+                {
+                    UpdateMessage();
+                }
             }
         }
 
@@ -87,6 +91,9 @@ namespace RosSharp.RosBridgeClient
             }*/
         }
 
-
+        public void EnableDisable()
+        {
+            isEnabled = !isEnabled;
+        }
     }
 }
