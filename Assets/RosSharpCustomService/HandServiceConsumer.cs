@@ -1,9 +1,7 @@
 ﻿using RosSharp.RosBridgeClient.MessageTypes.NaoHandsControl;
-using RosSharp.RosBridgeClient.MessageTypes.Rosapi;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
-using rosapi = RosSharp.RosBridgeClient.MessageTypes.Rosapi;
 
 namespace RosSharp.RosBridgeClient
 {

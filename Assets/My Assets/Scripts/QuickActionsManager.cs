@@ -10,6 +10,7 @@ namespace UnityEngine.UI
         public bool ArmsEnabled;
         public bool HandsEnabled;
         public bool WalkerEnabled;
+        public Image headBackground;
 
         public void Start()
         {
@@ -23,10 +24,12 @@ namespace UnityEngine.UI
             if (!headEnabled)
             {
                 label.text = "Dsiable" + "\n" + "Head";
+                ChangeColorInactive(headBackground);
             }
             else
             {
                 label.text = "Enable" + "\n" + "Head";
+                ChangeColorActive(headBackground);
             }
             headEnabled = !headEnabled;
         }
@@ -68,6 +71,16 @@ namespace UnityEngine.UI
                 label.text = "Enable" + "\n" + "Walker";
             }
             WalkerEnabled = !WalkerEnabled;
+        }
+
+        public void ChangeColorActive(Image background)
+        {
+            background.color = new Color(0, 200, 25, 255);
+        }
+
+        public void ChangeColorInactive(Image background)
+        {
+            background.color = new Color(0, 140, 255, 255);
         }
     }
 }
