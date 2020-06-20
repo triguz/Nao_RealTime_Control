@@ -1,2 +1,4 @@
-# Zora_VR_UI
-Implementation of a basic User Interface to work with zora v5 and Choreograph.
+# Nao Real Time Control
+Implementation of a basic User Interface to work with Nao Robot v4+ and ROS.
+
+#todo description

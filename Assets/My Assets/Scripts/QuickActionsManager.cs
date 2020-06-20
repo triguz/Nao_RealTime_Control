@@ -10,7 +10,10 @@ namespace UnityEngine.UI
         public bool ArmsEnabled;
         public bool HandsEnabled;
         public bool WalkerEnabled;
-        public Image headBackground;
+        //public Image headBackground;
+        public GameObject left_panel;
+        public GameObject right_panel;
+        public Transform target;
 
         public void Start()
         {
@@ -19,17 +22,30 @@ namespace UnityEngine.UI
             HandsEnabled = false;
             WalkerEnabled = false;
         }
+
+        public void Update()
+        {
+            float ui_offset = 1.2f;
+            transform.position = new Vector3(target.position.x, transform.position.y, target.position.z + ui_offset);
+
+            if (OVRInput.GetDown(OVRInput.RawButton.Start))
+            {
+                left_panel.SetActive(!left_panel.activeSelf);
+                right_panel.SetActive(!right_panel.activeSelf);
+            }
+        }
+
         public void EnableDisableHead(Text label)
         {
             if (!headEnabled)
             {
                 label.text = "Dsiable" + "\n" + "Head";
-                ChangeColorInactive(headBackground);
+                //ChangeColorInactive(headBackground);
             }
             else
             {
                 label.text = "Enable" + "\n" + "Head";
-                ChangeColorActive(headBackground);
+                //ChangeColorActive(headBackground);
             }
             headEnabled = !headEnabled;
         }
