@@ -52,44 +52,20 @@ namespace RosSharp.RosBridgeClient
             Quaternion rotR = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch).Unity2Ros();
             Quaternion rotL = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LTouch).Unity2Ros();
 
-            /*Vector3 posR = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch);
-            Vector3 posL = OVRInput.GetLocalControllerPosition(OVRInput.Controller.LTouch);
-            Quaternion rotR = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch);
-            Quaternion rotL = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LTouch);
-            print("R JOY POS: X:" + posR.x + " Y: " + posR.y + " Z: " + posR.z +"\n");
-            Vector3 posUR = OVRInput.GetLocalControllerPosition(OVRInput.Controller.RTouch).Unity2Ros();
-            print("R JOY POS CONV: X:" + posUR.x + " Y: " + posUR.y + " Z: " + posUR.z + "\n");
-
-            print("R JOY ROT: X:" + rotR.x + " Y: " + rotR.y + " Z: " + rotR.z + " W: " + rotR.w + "\n");
-            Quaternion rotUR = OVRInput.GetLocalControllerRotation(OVRInput.Controller.RTouch).Unity2Ros();
-            print("R JOY ROT CONV: X:" + rotUR.x + " Y: " + rotUR.y + " Z: " + rotUR.z + " W: " + rotUR.w + "\n");
-            print("R JOY ROT EULER: X:" + rotR.eulerAngles.x + " Y: " + rotR.eulerAngles.y + " Z: " + rotR.eulerAngles.z + "\n");
-            print("R JOY ROT CONV EULER: X:" + rotUR.eulerAngles.x + " Y: " + rotUR.eulerAngles.y + " Z: " + rotUR.eulerAngles.z + "\n");
-            print("R JOY ROT EULER RAD: X:" + rotR.eulerAngles.x * Mathf.Deg2Rad + " Y: " + rotR.eulerAngles.y * Mathf.Deg2Rad + " Z: " + rotR.eulerAngles.z * Mathf.Deg2Rad + "\n");
-            print("R JOY ROT CONV EULER RAD: X:" + rotUR.eulerAngles.x * Mathf.Deg2Rad + " Y: " + rotUR.eulerAngles.y * Mathf.Deg2Rad + " Z: " + rotUR.eulerAngles.z * Mathf.Deg2Rad + "\n");
-            */
             //coefficents to calibrate arms movement
             float coefX = 0.35f;
             float coefY = 0.23f;
             float coefZ = 0.37f;
+
             //set position
-            //print("RIGHT ARM VALUES: " + posR.x * coef2 + " " + posR.y * coef + " " + posR.z * coef + "\n");
-            //print("LEFT ARM VALUES: " + posL.x * coef2 + " " + posL.y * coef + " " + posL.z * coef + "\n");
-            //message.position_right_arm[0] = FitSafePosition(posR.x* coefY, 'x');
             message.position_right_arm[0] = FitSafePosition(posR.x * coefX, 'x');
-            //temp var to save right arm y sign 
-            //float saveSign = FitSafePosition(-posR.y* coefX, 'y');
             float saveSign = FitSafePosition(-posR.y * coefY, 'y');
             message.position_right_arm[1] = -saveSign;
             message.position_right_arm[2] = FitSafePosition(posR.z* coefZ, 'z');
-            //message.position_left_arm[0] = FitSafePosition(posL.x* coefY, 'x');
             message.position_left_arm[0] = FitSafePosition(posL.x * coefX, 'x');
             //left arm is always pointing too much to the right...
-            //message.position_left_arm[1] = FitSafePosition(((posL.y* coefX))+0.01f, 'y');
             message.position_left_arm[1] = FitSafePosition(((posL.y * coefY)) + 0.01f, 'y');
             message.position_left_arm[2] = FitSafePosition(posL.z* coefZ, 'z');
-            //print("RIGHT ARM VALUES FITTED: " + message.position_right_arm[0] + " " + message.position_right_arm[1] + " " + message.position_right_arm[2] + " " + "\n");
-            //print("LEFT ARM VALUES FITTED: " + message.position_left_arm[0] + " " + message.position_left_arm[1] + " " + message.position_left_arm[2] + " " + "\n");
             //get radians from quaternion
             Vector3 eulerRotR = FixAngleGetRad(rotR.eulerAngles, 'r');
             Vector3 eulerRotL = FixAngleGetRad(rotL.eulerAngles, 'l');
@@ -100,7 +76,6 @@ namespace RosSharp.RosBridgeClient
             message.position_left_arm[3] = eulerRotL.x;
             message.position_left_arm[4] = eulerRotL.y;
             message.position_left_arm[5] = eulerRotL.z;
-            //string angleSent = ("Amgles sent are: X " + eulerRotR.x + " Y: " + eulerRotR.y + " Z: " + eulerRotR.z + "\n");
             Publish(message);
 
 

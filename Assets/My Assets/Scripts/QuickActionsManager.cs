@@ -10,7 +10,6 @@ namespace UnityEngine.UI
         public bool ArmsEnabled;
         public bool HandsEnabled;
         public bool WalkerEnabled;
-        //public Image headBackground;
         public GameObject left_panel;
         public GameObject right_panel;
         public Transform target;
@@ -40,12 +39,10 @@ namespace UnityEngine.UI
             if (!headEnabled)
             {
                 label.text = "Dsiable" + "\n" + "Head";
-                //ChangeColorInactive(headBackground);
             }
             else
             {
                 label.text = "Enable" + "\n" + "Head";
-                //ChangeColorActive(headBackground);
             }
             headEnabled = !headEnabled;
         }

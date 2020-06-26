@@ -7,21 +7,10 @@ namespace RosSharp.RosBridgeClient.Actionlib
     {
         OVRCameraRig headSet;
         private Quaternion rotation;
-        //float prevAngleX = 0.0f;
-        //float prevAngleY = 0.0f;
-        //float tolerance = 0.0f;
-        //float pi = 3.14159265359f;
-        //float maxRotationY = 2.0857f;
-        //float minRotationY = -2.0857f;
-        //float maxRotationX = -0.6720f;
-        //float minRotationX = 0.5149f;
         private float XAngle;
         private float YAngle;
         private RosConnector rosConnector;
         public JointAnglesWithSpeedActionClient jointAnglesWithSpeedActionClient;
-        //public float headRotationX;
-        //public float headRotationY;
-        //public float headRotationZ;
 
         public string actionName = "joint_angles_action";
         public string[] joint_names = { "HeadYaw", "HeadPitch" };
@@ -48,22 +37,17 @@ namespace RosSharp.RosBridgeClient.Actionlib
             rotation = headSet.centerEyeAnchor.rotation;
             //get euler angles from quaternion
             Vector3 eulerRotation = rotation.eulerAngles;
-            //headRotationX = eulerRotation.x;
-            //headRotationY = eulerRotation.y;
-            //headRotationZ = eulerRotation.z;
             if (eulerRotation.y < 270.0f && eulerRotation.y > 180.0f) { eulerRotation.y = 271.0f; }
             if (eulerRotation.y < 180.0f && eulerRotation.y > 90.0f) { eulerRotation.y = 89.0f; }
             if (eulerRotation.x < 270.0f && eulerRotation.x > 180.0f) { eulerRotation.x = 271.0f; }
             if (eulerRotation.x < 180.0f && eulerRotation.x > 900.0f) { eulerRotation.x = 89.0f; }
             if (OVRInput.Get(OVRInput.RawButton.B))
             {
-                //print("ENTERED IN CICLE, THE ANGLES ARE X: " + XAngle + " EULER X: " + eulerRotation.x + " Y: " + YAngle + " EULER Y: " + eulerRotation.y + " EULER ROTATION UNITY: " + eulerRotation2 + " EULER ROTATION ROS: " + eulerRotation + "\n");
                 if (eulerRotation.y <= 90.0f && eulerRotation.x <= 90.0f)
                 {
                     XAngle = eulerRotation.x * Mathf.Deg2Rad;
                     YAngle = -eulerRotation.y * Mathf.Deg2Rad;
                     float[] new_joint_angles = { YAngle, XAngle };
-                    //print("ENTERED IN CYCLE <90, HEADYAW IS: " + YAngle + " HEADPITCH: " + XAngle + "\n");
                     ExecuteAngle(joint_names, new_joint_angles);
                 }
                 if (eulerRotation.y >= 270.0f && eulerRotation.x >= 270.0f)
@@ -71,7 +55,6 @@ namespace RosSharp.RosBridgeClient.Actionlib
                     XAngle = -(360.0f - eulerRotation.x) * Mathf.Deg2Rad;
                     YAngle = (360.0f - eulerRotation.y) * Mathf.Deg2Rad;
                     float[] new_joint_angles = { YAngle, XAngle };
-                    //print("ENTERED IN CYCLE >270, HEADYAW IS: " + YAngle + " HEADPITCH: " + XAngle + "\n");
                     ExecuteAngle(joint_names, new_joint_angles);
                 }
                 if (eulerRotation.y <= 90.0f && eulerRotation.x >= 270.0f)
@@ -79,7 +62,6 @@ namespace RosSharp.RosBridgeClient.Actionlib
                     XAngle = -(360.0f - eulerRotation.x) * Mathf.Deg2Rad;
                     YAngle = -eulerRotation.y * Mathf.Deg2Rad;
                     float[] new_joint_angles = { YAngle, XAngle };
-                    //print("ENTERED IN CYCLE <90 e >270, HEADYAW IS: " + YAngle + " HEADPITCH: " + XAngle + "\n");
                     ExecuteAngle(joint_names, new_joint_angles);
                 }
                 if (eulerRotation.y >= 270.0f && eulerRotation.x <= 90.0f)
@@ -87,7 +69,6 @@ namespace RosSharp.RosBridgeClient.Actionlib
                     XAngle = eulerRotation.x * Mathf.Deg2Rad;
                     YAngle = (360.0f - eulerRotation.y) * Mathf.Deg2Rad;
                     float[] new_joint_angles = { YAngle, XAngle };
-                    //print("ENTERED IN CYCLE >270 e <90, HEADYAW IS: " + YAngle + " HEADPITCH: " + XAngle + "\n");
                     ExecuteAngle(joint_names, new_joint_angles);
                 }
                 else

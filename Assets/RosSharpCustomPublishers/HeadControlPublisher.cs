@@ -56,39 +56,30 @@ namespace RosSharp.RosBridgeClient
             message.header.Update();
             message.joint_names[0] = "HeadYaw";
             message.joint_names[1] = "HeadPitch";
-            //print("ENTERED IN CICLE, THE ANGLES ARE X: " + XAngle + " EULER X: " + eulerRotation.x + " Y: " + YAngle + " EULER Y: " + eulerRotation.y + " EULER ROTATION UNITY: " + eulerRotation2 + " EULER ROTATION ROS: " + eulerRotation + "\n");
             if (eulerRotation.y <= 90.0f && eulerRotation.x <= 90.0f)
             {
                 message.joint_angles[0] = -eulerRotation.y * Mathf.Deg2Rad;
                 message.joint_angles[1] = eulerRotation.x * Mathf.Deg2Rad;
-                //print("ENTERED IN CYCLE <90, HEADYAW IS: " + YAngle + " HEADPITCH: " + XAngle + "\n");
                 Publish(message);
             }
             if (eulerRotation.y >= 270.0f && eulerRotation.x >= 270.0f)
             {
                 message.joint_angles[0] = (360.0f - eulerRotation.y) * Mathf.Deg2Rad;
                 message.joint_angles[1] = -(360.0f - eulerRotation.x) * Mathf.Deg2Rad;
-                //print("ENTERED IN CYCLE >270, HEADYAW IS: " + YAngle + " HEADPITCH: " + XAngle + "\n");
                 Publish(message);
             }
             if (eulerRotation.y <= 90.0f && eulerRotation.x >= 270.0f)
             {
                 message.joint_angles[0] = -eulerRotation.y * Mathf.Deg2Rad;
                 message.joint_angles[1] = -(360.0f - eulerRotation.x) * Mathf.Deg2Rad;
-                //print("ENTERED IN CYCLE <90 e >270, HEADYAW IS: " + YAngle + " HEADPITCH: " + XAngle + "\n");
                 Publish(message);
             }
             if (eulerRotation.y >= 270.0f && eulerRotation.x <= 90.0f)
             {
                 message.joint_angles[0] = (360.0f - eulerRotation.y) * Mathf.Deg2Rad;
                 message.joint_angles[1] = eulerRotation.x * Mathf.Deg2Rad;
-                //print("ENTERED IN CYCLE >270 e <90, HEADYAW IS: " + YAngle + " HEADPITCH: " + XAngle + "\n");
                 Publish(message);
             }
-            /*else
-            {
-                print("ENTERED IN ELSE, THE ANGLES ARE X: " + eulerRotation.x + " Y: " + eulerRotation.y + "\n");
-            }*/
         }
 
         public void EnableDisable()

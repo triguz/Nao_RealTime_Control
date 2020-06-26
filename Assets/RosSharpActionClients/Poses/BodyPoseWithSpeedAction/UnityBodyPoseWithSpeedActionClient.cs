@@ -31,20 +31,6 @@ namespace RosSharp.RosBridgeClient.Actionlib
             result = bodyPoseWithSpeedActionClient.GetResultString();
         }
 
-        /*public void RegisterGoal()
-        {
-            bodyPoseWithSpeedActionClient.posture_name = posture_name;
-            bodyPoseWithSpeedActionClient.speed = speed;
-        }
-
-        public void ExecutePosture(string new_posture_name, float new_speed_value)
-        {
-            bodyPoseWithSpeedActionClient.posture_name = new_posture_name;
-            bodyPoseWithSpeedActionClient.speed = new_speed_value;
-
-            bodyPoseWithSpeedActionClient.SendGoal();
-        }*/
-
         public void RegisterGoal()
         {
             bodyPoseWithSpeedActionClient.posture_name = posture_name;
