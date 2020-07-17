@@ -9,6 +9,7 @@ namespace RosSharp.RosBridgeClient
         private int positionLenght = 6; //lenght of the position array 6D
         private MessageTypes.NaoArmsControl.ArmsControl message;
         protected bool isEnabled { get; set; }
+        protected bool mirrorMode { get; set; }
         int rate = 0;
         protected override void Start()
         {
@@ -53,30 +54,58 @@ namespace RosSharp.RosBridgeClient
             Quaternion rotL = OVRInput.GetLocalControllerRotation(OVRInput.Controller.LTouch).Unity2Ros();
 
             //coefficents to calibrate arms movement
-            float coefX = 0.35f;
+            float coefX = 0.34f;
             float coefY = 0.23f;
             float coefZ = 0.37f;
 
-            //set position
-            message.position_right_arm[0] = FitSafePosition(posR.x * coefX, 'x');
-            float saveSign = FitSafePosition(-posR.y * coefY, 'y');
-            message.position_right_arm[1] = -saveSign;
-            message.position_right_arm[2] = FitSafePosition(posR.z* coefZ, 'z');
-            message.position_left_arm[0] = FitSafePosition(posL.x * coefX, 'x');
-            //left arm is always pointing too much to the right...
-            message.position_left_arm[1] = FitSafePosition(((posL.y * coefY)) + 0.01f, 'y');
-            message.position_left_arm[2] = FitSafePosition(posL.z* coefZ, 'z');
-            //get radians from quaternion
-            Vector3 eulerRotR = FixAngleGetRad(rotR.eulerAngles, 'r');
-            Vector3 eulerRotL = FixAngleGetRad(rotL.eulerAngles, 'l');
+            if (!mirrorMode)
+            {
+                //set position
+                message.position_right_arm[0] = FitSafePosition(posR.x * coefX, 'x');
+                float saveSign = FitSafePosition(-posR.y * coefY, 'y');
+                message.position_right_arm[1] = -saveSign;
+                message.position_right_arm[2] = FitSafePosition(posR.z * coefZ, 'z');
+                message.position_left_arm[0] = FitSafePosition(posL.x * coefX, 'x');
+                //left arm is always pointing too much to the right...
+                message.position_left_arm[1] = FitSafePosition(((posL.y * coefY)) + 0.01f, 'y');
+                message.position_left_arm[2] = FitSafePosition(posL.z * coefZ, 'z');
+                //get radians from quaternion
+                Vector3 eulerRotR = FixAngleGetRad(rotR.eulerAngles, 'r');
+                Vector3 eulerRotL = FixAngleGetRad(rotL.eulerAngles, 'l');
 
-            message.position_right_arm[3] = eulerRotR.x;
-            message.position_right_arm[4] = eulerRotR.y;
-            message.position_right_arm[5] = eulerRotR.z;
-            message.position_left_arm[3] = eulerRotL.x;
-            message.position_left_arm[4] = eulerRotL.y;
-            message.position_left_arm[5] = eulerRotL.z;
-            Publish(message);
+                message.position_right_arm[3] = eulerRotR.x;
+                message.position_right_arm[4] = eulerRotR.y;
+                message.position_right_arm[5] = eulerRotR.z;
+                message.position_left_arm[3] = eulerRotL.x;
+                message.position_left_arm[4] = eulerRotL.y;
+                message.position_left_arm[5] = eulerRotL.z;
+                Publish(message);
+            }
+            else
+            {
+                //set position
+                message.position_left_arm[0] = FitSafePosition(posR.x * coefX, 'x');
+                float saveSign = FitSafePosition(-posR.y * coefY, 'y');
+                message.position_left_arm[1] = saveSign;
+                message.position_left_arm[2] = FitSafePosition(posR.z * coefZ, 'z');
+                message.position_right_arm[0] = FitSafePosition(posL.x * coefX, 'x');
+                //left arm is always pointing too much to the right...
+                message.position_right_arm[1] = FitSafePosition(((posL.y * coefY)), 'y');
+                message.position_right_arm[2] = FitSafePosition(posL.z * coefZ, 'z');
+                //get radians from quaternion
+                Vector3 eulerRotR = FixAngleGetRad(rotR.eulerAngles, 'r');
+                Vector3 eulerRotL = FixAngleGetRad(rotL.eulerAngles, 'l');
+
+                message.position_left_arm[3] = eulerRotR.x;
+                message.position_left_arm[4] = eulerRotR.y;
+                message.position_left_arm[5] = eulerRotR.z;
+                message.position_right_arm[3] = eulerRotL.x;
+                message.position_right_arm[4] = eulerRotL.y;
+                message.position_right_arm[5] = eulerRotL.z;
+                Publish(message);
+            }
+
+            
 
 
         }
@@ -241,6 +270,11 @@ namespace RosSharp.RosBridgeClient
         public void EnableDisable()
         {
             isEnabled = !isEnabled;
+        }
+
+        public void ChangeMirrorMode()
+        {
+            mirrorMode = !mirrorMode;
         }
     }
 }

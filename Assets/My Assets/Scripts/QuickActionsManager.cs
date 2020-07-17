@@ -12,6 +12,8 @@ namespace UnityEngine.UI
         public bool WalkerEnabled;
         public GameObject left_panel;
         public GameObject right_panel;
+        public GameObject behavior_Canvas;
+        public GameObject posture_Canvas;
         public Transform target;
 
         public void Start()
@@ -31,6 +33,8 @@ namespace UnityEngine.UI
             {
                 left_panel.SetActive(!left_panel.activeSelf);
                 right_panel.SetActive(!right_panel.activeSelf);
+                behavior_Canvas.SetActive(!behavior_Canvas.activeSelf);
+                posture_Canvas.SetActive(!posture_Canvas.activeSelf);
             }
         }
 
