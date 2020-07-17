@@ -1,6 +1,6 @@
 # Nao Real Time Control
 
-> Implementation of a basic User Interface to work with Nao Robot v4+ and ROS.
+> Implementation of a basic VR User Interface to work with Nao Robot and ROS.
 
 > Publication abastract
 
@@ -212,7 +212,7 @@ $ echo "source ~/catkin_ws/devel/setup.bash" >> ~/.bashrc
 ```
 By default, the previous section only installs the Python version of the bridge. This requires basically no compiling, but rather a linking of python scripts. There exists also a C++ version, which might be faster to execute.
 For this work, the C++ SDK 2.1.4.13 Linux 64 was used.
-Execute the following commands for extracting, installing the SDK and checking the installation. A separate cmake file is included for finding the C++ Naoqi SDK, which requires the `AL\_DIR` environment variable to point to the installation of the SDK. This can be done inside the `.bashrc` file:
+Execute the following commands for extracting, installing the SDK and checking the installation. A separate cmake file is included for finding the C++ Naoqi SDK, which requires the `AL_DIR` environment variable to point to the installation of the SDK. This can be done inside the `.bashrc` file:
 ```shell
 $ echo "export AL_DIR=~/naoqi-sdk-2.1.4.13-linux64" >> ~/.bashrc
 $ source ~/.bashrc
@@ -247,8 +247,8 @@ $ catkin_make
 ### Final Touches
 
 Before completing ROS Installation process, a couple of small tweaks need to be made to ensure that everything works correctly:
-The launch file `nao\_full\_py.launch` provided by the package `nao\_bringup` launches some of the nodes needed to communicate with NaoQi, unfortunately it doesn't launch `nao\_behaviors` by default, so it needs to be added manually.
-Go to `nao\_robot/nao\_bringup/launch/`, open `nao\_full\_py.launch` and add these lines:
+The launch file `nao_full_py.launch` provided by the package `nao_bringup` launches some of the nodes needed to communicate with NaoQi, unfortunately it doesn't launch `nao_behaviors` by default, so it needs to be added manually.
+Go to `nao_robot/nao_bringup/launch/`, open `nao_full_py.launch` and add these lines:
 ```shell
 <!-- enable behaviours -->
 <include file="$(find nao_apps)/launch/behaviors.launch" >
@@ -351,7 +351,7 @@ If the robot is missing check Chapter `Others` on how to correctly setup Rviz. I
 
 ![Rviz View](https://github.com/triguz/Nao_RealTime_Control/blob/master/imgs/RvizRobotModel.png "Rviz View")
 
-Before activating the various Nao Real-Time Control nodes go into each launch file and make sure the `nao\_ip=<robot\_ip>` corresponds to the correct ip of your robot otherwise the nodes will not be able to find NaoQi and will not start.
+Before activating the various Nao Real-Time Control nodes go into each launch file and make sure the `nao_ip=<robot_ip>` corresponds to the correct ip of your robot otherwise the nodes will not be able to find NaoQi and will not start.
 Launch Nao Real-Time Control nodes:
 ```shell
 $ roslaunch nao_hands_control nao_hands_control.launch 
@@ -366,7 +366,7 @@ Launch RosBridge Server WebSocket:
 ```shell
 $ roslaunch rosbridge_server rosbridge_websocket.launch 
 ```
-Being able to visualize the cameras feed from the real robot in Unity requires to convert to a compressed format and republish the raw image published by `naoqi\_sensor\_py`. One new publisher for each camera will be created:
+Being able to visualize the cameras feed from the real robot in Unity requires to convert to a compressed format and republish the raw image published by `naoqi_sensor_py`. One new publisher for each camera will be created:
 ```shell
 $ rosrun image_transport republish raw in:=/nao_robot/camera/bottom/camera/image_raw compressed out:=/nao_robot/camera/bottom/camera/image_repub
 ```
@@ -388,7 +388,7 @@ To find available packages, use:
 ```shell
 $ apt-cache search ros-indigo
 ```
-Rviz needs to be setup to properly show the robot. In the top-left "Displays" window, change "Fixed Frame" to "base\_link" or "base\_footprint". If only the "/map" option is available, then the URDF model wasn't loaded from the previous step. The "Target Frame" (right panel) should be "<Fixed Frame>". Global Status should change to "OK". If it is red and "error" then that probably means that the topic /joint\_states is not being updated. Click on the "Add" button and add a grid. Click on the "Add" button and add RobotModel.
+Rviz needs to be setup to properly show the robot. In the top-left "Displays" window, change "Fixed Frame" to "base_link" or "base_footprint". If only the "/map" option is available, then the URDF model wasn't loaded from the previous step. The "Target Frame" (right panel) should be "<Fixed Frame>". Global Status should change to "OK". If it is red and "error" then that probably means that the topic /joint_states is not being updated. Click on the "Add" button and add a grid. Click on the "Add" button and add RobotModel.
 
 To view the automatic generated graph of all active ROS nodes and topics in a given moment:
 ```shell
@@ -398,7 +398,7 @@ ROS Graphical User Interface can be helpful to view message type definition, act
 ```shell
 $ rosrun rqt_gui rqt_gui
 ```
-To add custom \emph{BodyPoses} to the ones already available add these lines to `pose\_manager.launch`:
+To add custom \emph{BodyPoses} to the ones already available add these lines to `pose_manager.launch`:
 ```shell
 <!-- You can define here a path to a Choregraphe posture library (XAP file). -->
     <param name="xap" value="$(find naoqi_pose)/config/filename.xap" />
