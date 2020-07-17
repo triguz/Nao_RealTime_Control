@@ -11,7 +11,7 @@ namespace RosSharp.RosBridgeClient.Actionlib
 
         public string actionName = "body_pose_naoqi";
         public string posture_name = "Sit";
-        public float speed = 1.0f;
+        public float speed = 0.6f;
         public string status = "";
         public string feedback = "";
         public string result = "";
