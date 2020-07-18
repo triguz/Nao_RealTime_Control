@@ -6,8 +6,8 @@
 
 > publication tags
 
-> youtube video preview
-[![IMAGE ALT TEXT HERE](http://img.youtube.com/vi/YOUTUBE_VIDEO_ID_HERE/0.jpg)](http://www.youtube.com/watch?v=YOUTUBE_VIDEO_ID_HERE)
+> 
+[![youtube video](https://github.com/triguz/Nao_RealTime_Control/blob/master/imgs/youtube-preview.jpg)](https://youtu.be/J8I892TnaIA)
 
 ## Table of Contents
 
