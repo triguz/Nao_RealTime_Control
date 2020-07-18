@@ -6,8 +6,7 @@
 
 > publication tags
 
-> 
-[![youtube video](https://github.com/triguz/Nao_RealTime_Control/blob/master/imgs/youtube-preview.jpg)](https://youtu.be/J8I892TnaIA)
+[![youtube video here](https://img.youtube.com/vi/J8I892TnaIA/0.jpg)](https://www.youtube.com/watch?v=J8I892TnaIA)
 
 ## Table of Contents
 
