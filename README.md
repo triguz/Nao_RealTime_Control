@@ -4,7 +4,7 @@
 
 > Publication abastract
 
-> publication tags
+> TAGS: Humanoids Robot, ROS Framework, Virtual Reality, Human-Robot Interaction, NAO robot, Unity engine.
 
 > [![youtube video here](https://img.youtube.com/vi/J8I892TnaIA/0.jpg)](https://www.youtube.com/watch?v=J8I892TnaIA)
 
