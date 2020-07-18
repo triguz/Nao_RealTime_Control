@@ -26,7 +26,6 @@
 	- [Virtual Robot](#virtual)
 	- [Real Robot](#real)
 - [Others](#others)
-- [References](#refer)
 
 ---
 
@@ -406,7 +405,3 @@ To add custom `BodyPoses` to the ones already available add these lines to `pose
 
 ---
 
-<a name="refer"></a>
-### References
-
----
