@@ -6,7 +6,7 @@
 
 > publication tags
 
-[![youtube video here](https://img.youtube.com/vi/J8I892TnaIA/0.jpg)](https://www.youtube.com/watch?v=J8I892TnaIA)
+> [![youtube video here](https://img.youtube.com/vi/J8I892TnaIA/0.jpg)](https://www.youtube.com/watch?v=J8I892TnaIA)
 
 ## Table of Contents
 
