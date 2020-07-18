@@ -398,7 +398,7 @@ ROS Graphical User Interface can be helpful to view message type definition, act
 ```shell
 $ rosrun rqt_gui rqt_gui
 ```
-To add custom \emph{BodyPoses} to the ones already available add these lines to `pose_manager.launch`:
+To add custom `BodyPoses` to the ones already available add these lines to `pose_manager.launch`:
 ```shell
 <!-- You can define here a path to a Choregraphe posture library (XAP file). -->
     <param name="xap" value="$(find naoqi_pose)/config/filename.xap" />
