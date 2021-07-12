@@ -408,5 +408,11 @@ To add custom `BodyPoses` to the ones already available add these lines to `pose
 <a name="evaluation"></a>
 ### Evaluation
 
-![image](https://user-images.githubusercontent.com/6943418/125290824-00190e00-e321-11eb-8921-2f418e46faf7.png)
+Question 1: How do you find the interaction with the robot?
+Question 2: How do you find the usability of the system?
+Question 3: How do you find the developed user interface?
+Question 4: What are the main weaknesses of the resulting interaction?
+Question 5: Can you think of any additional features to be included in the system?
+
+![image](https://user-images.githubusercontent.com/6943418/125291137-5ab26a00-e321-11eb-9f0d-f2ebf22c7f15.png)
 
