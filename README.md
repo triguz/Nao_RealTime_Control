@@ -2,7 +2,7 @@
 
 > Implementation of a basic VR User Interface to work with Nao Robot and ROS.
 
-> Publication abastract
+> The availability of frameworks and applications in the robotic domain fostered in the last years a spread inthe adoption of robots in daily life activities. Many of these activities include the robot teleoperation, i.e.controlling its movements remotely. Virtual Reality (VR) demonstrated its effectiveness in lowering the skillbarrier for such a task. In this paper, we discuss the engineering and the implementation of a general-purpose,open-source framework for teleoperation a humanoid robot through a VR headset. It includes a VR interfacefor articulating different robot actions using the VR controllers, without the need for training. Besides, itexploits the flexibility of the Robot Operating System (ROS) for the control and synchronization of the robothardware, the distribution of the computation and its scalability. The framework supports the extensionfor operating both other types of robots and using different VR configurations. We evaluated the proposedarchitecture for assessing the system’s quality through Software Architecture Analysis Method.
 
 > **TAGS**: Humanoids Robot, ROS Framework, Virtual Reality, Human-Robot Interaction, NAO robot, Unity engine.
 
