@@ -408,5 +408,5 @@ To add custom `BodyPoses` to the ones already available add these lines to `pose
 <a name="evaluation"></a>
 ### Evaluation
 
-|	#	|	Question 1	|	Question 2	|	Question 3	|	Question 4	|	Question 5	|
-![image](https://user-images.githubusercontent.com/6943418/125290645-d65fe700-e320-11eb-95d0-38b38a644f36.png)
+![image](https://user-images.githubusercontent.com/6943418/125290824-00190e00-e321-11eb-8921-2f418e46faf7.png)
+
